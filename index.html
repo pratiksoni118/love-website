@@ -129,9 +129,15 @@ img {
     </div>
 </div>
 
-<audio id="bgMusic" loop>
-<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+<audio id="bgm" loop>
+  <source src="zara_zara_instrument.mp3" type="audio/mpeg">
 </audio>
+
+<script>
+document.addEventListener("click", function() {
+    document.getElementById("bgm").play();
+});
+</script>
 
 <script>
 var correctPassword = "sonaaa"; // 🔑 CHANGE THIS
