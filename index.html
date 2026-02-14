@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Only For You 🤫</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: black;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Star Background */
+.stars {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: transparent url("https://www.transparenttextures.com/patterns/stardust.png");
+    animation: moveStars 100s linear infinite;
+    z-index: -1;
+}
+
+@keyframes moveStars {
+    from {background-position: 0 0;}
+    to {background-position: 10000px 5000px;}
+}
+
+.container {
+    margin-top: 15vh;
+    padding: 20px;
+}
+
+input {
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    font-size: 16px;
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+#secretContent {
+    display: none;
+    margin-top: 20px;
+}
+
+#typingText {
+    font-size: 20px;
+    max-width: 600px;
+    margin: auto;
+    min-height: 60px;
+}
+
+.heart {
+    font-size: 50px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.2);}
+    100% {transform: scale(1);}
+}
+
+.floating-heart {
+    position: absolute;
+    bottom: -10px;
+    animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+    0% {transform: translateY(0); opacity: 1;}
+    100% {transform: translateY(-100vh); opacity: 0;}
+}
+
+#proposal {
+    margin-top: 30px;
+}
+
+#noBtn {
+    position: relative;
+}
+img {
+    width: 200px;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<div class="container">
+    <h1>🔐 Enter Secret Password</h1>
+    <input type="password" id="password" placeholder="Enter password">
+    <button onclick="checkPassword()">Unlock</button>
+
+    <div id="secretContent">
+        <h2>💖 Only For You 💖</h2>
+
+        <!-- Add Photo Here -->
+        <img src="yourphoto.jpg" alt="Her Photo">
+
+        <div id="typingText"></div>
+        <div class="heart">❤️</div>
+
+        <div id="proposal">
+            <h3>Will You Be Mine? 💍</h3>
+            <button onclick="yesLove()">Yes ❤️</button>
+            <button id="noBtn" onmouseover="moveNo()">No 😜</button>
+        </div>
+    </div>
+</div>
+
+<audio id="bgMusic" loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+</audio>
+
+<script>
+var correctPassword = "PratikLove"; // 🔑 CHANGE THIS
+
+function checkPassword() {
+    var entered = document.getElementById("password").value;
+
+    if (entered === correctPassword) {
+        document.getElementById("secretContent").style.display = "block";
+        typeWriter();
+        startHearts();
+        document.getElementById("bgMusic").play();
+    } else {
+        alert("Wrong password 😈 Try again sweetheart.");
+    }
+}
+
+var message = "From the first day we met, you became special. You are my peace, my happiness, and my forever. No matter what, my heart will always choose you. ❤️";
+
+var i = 0;
+function typeWriter() {
+    if (i < message.length) {
+        document.getElementById("typingText").innerHTML += message.charAt(i);
+        i++;
+        setTimeout(typeWriter, 40);
+    }
+}
+
+function startHearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.classList.add("floating-heart");
+        heart.innerHTML = "💗";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (15 + Math.random() * 20) + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 6000);
+    }, 500);
+}
+
+function moveNo() {
+    var btn = document.getElementById("noBtn");
+    btn.style.position = "absolute";
+    btn.style.left = Math.random() * 80 + "vw";
+    btn.style.top = Math.random() * 80 + "vh";
+}
+
+function yesLove() {
+    alert("Yayyy 😍 I love you forever ❤️");
+}
+</script>
+
+</body>
+</html>
